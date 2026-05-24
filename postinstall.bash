@@ -22,6 +22,6 @@ echo ">> Logging back out of Github to clear secrets"
 gh auth logout
 
 echo ">> Pulling and running Ansible playbook"
-ansible-pull --url git@github.com:riftEmber/pc-config -i localhost, --ask-become-pass
+PYTHONUNBUFFERED=1 ansible-pull --url git@github.com:riftEmber/pc-config -i localhost, --ask-become-pass
 
 echo ">> Done! Reboot for all changes to take effect."
