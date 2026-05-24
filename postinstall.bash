@@ -5,9 +5,10 @@
 set -exuo pipefail
 
 # Install basic requirements to run the Ansible playbook
-echo ">> Installing packages"
-sudo pacman -Syu
-sudo pacman -S python ansible github-cli firefox git
+echo ">> Updating all installed packages"
+sudo pacman -Syu --noconfirm
+echo ">> Installing required packages for bootstrapping"
+sudo pacman -S --noconfirm python ansible github-cli firefox git libsecret
 
 # Generate new SSH key
 echo ">> Generating SSH key"
@@ -21,4 +22,4 @@ gh auth login --hostname github.com --git-protocol ssh
 echo ">> Pulling and running Ansible playbook"
 ansible-pull --url git@github.com:riftEmber/pc-config setup.yaml -i localhost, --ask-become-pass
 
-echo ">> Done!"
+echo ">> Done! Reboot for all changes to take effect."
