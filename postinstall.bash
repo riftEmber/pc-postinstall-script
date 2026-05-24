@@ -21,6 +21,9 @@ gh auth login --hostname github.com --git-protocol ssh --insecure-storage
 echo ">> Logging back out of Github to clear secrets"
 gh auth logout
 
+echo ">> Installing requirements from ansible-galaxy"
+ansible-galaxy collection install kewlfft.aur
+
 echo ">> Pulling and running Ansible playbook"
 PYTHONUNBUFFERED=1 ansible-pull --url git@github.com:riftEmber/pc-config -i localhost, --ask-become-pass
 
